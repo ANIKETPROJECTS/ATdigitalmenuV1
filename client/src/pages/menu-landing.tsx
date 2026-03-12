@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Menu as MenuIcon, X, Tag, Copy, Check, Calendar, Percent, Info } from "lucide-react";
 import { useLocation } from "wouter";
@@ -311,7 +311,9 @@ export default function MenuLanding() {
   const { toast } = useToast();
   const { t } = useLanguage();
   const [selectedCoupon, setSelectedCoupon] = useState<typeof coupons[0] | null>(null);
-  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
+  const [showLightbox, setShowLightbox] = useState(false);
+  const lightboxPaused = useRef(false);
+  const swipeTouchX = useRef<number | null>(null);
 
   useEffect(() => {
     const savedCustomer = localStorage.getItem("customer_info");

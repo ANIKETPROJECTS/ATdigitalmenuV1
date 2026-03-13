@@ -1,5 +1,5 @@
 import { Utensils } from "lucide-react";
-import googleReviewImg from "@assets/Google_Review_1773389968949.png";
+import googleReviewImg from "@assets/Google_Review_(1)_1773391050407.png";
 import { useLocation } from "wouter";
 import { useWelcomeAudio } from "../hooks/useWelcomeAudio";
 import { MediaPreloader } from "../components/media-preloader";
@@ -54,8 +54,8 @@ export default function Welcome() {
         <LanguageDropdown />
       </div>
 
-      {/* Main content container */}
-      <div className="flex flex-col items-center w-full px-4 pt-0 pb-2">
+      {/* Main content container — everything centered */}
+      <div className="flex flex-col items-center w-full px-6 pt-0 pb-4">
 
         {/* Logo Image */}
         <div className="flex flex-col items-center w-full -mt-12">
@@ -67,22 +67,22 @@ export default function Welcome() {
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex gap-6 -mt-14">
+        <div className="flex items-center gap-6 -mt-14">
           <button
             onClick={() => handleSocialClick("https://www.instagram.com/barrelborn_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
-            className="w-11 h-11 flex items-center justify-center transition-opacity hover:opacity-80"
+            className="flex items-center justify-center transition-opacity hover:opacity-80"
           >
             <img src={instaImg} alt="Instagram" className="w-11 h-11 rounded-xl object-cover" />
           </button>
           <button
             onClick={() => handleSocialClick("https://facebook.com")}
-            className="w-11 h-11 flex items-center justify-center transition-opacity hover:opacity-80"
+            className="flex items-center justify-center transition-opacity hover:opacity-80"
           >
             <img src={fbImg} alt="Facebook" className="w-9 h-9 rounded-xl object-cover" />
           </button>
           <button
             onClick={() => handleSocialClick("https://youtube.com")}
-            className="w-11 h-11 flex items-center justify-center transition-opacity hover:opacity-80"
+            className="flex items-center justify-center transition-opacity hover:opacity-80"
           >
             <img src={ytImg} alt="YouTube" className="w-11 h-11 rounded-xl object-cover" />
           </button>
@@ -100,56 +100,56 @@ export default function Welcome() {
         </button>
 
         {/* Rating Section */}
-        <div className="text-center mt-5">
+        <div className="flex flex-col items-center mt-5">
           <p className="font-medium text-base mb-2" style={{ color: "#dcd4c8" }}>
             {t.rateOnGoogle}
           </p>
-          <div
-            className="flex justify-center cursor-pointer"
-            onClick={handleReviewClick}
-          >
+          <button onClick={handleReviewClick} className="hover:opacity-80 transition-opacity">
             <img
               src={googleReviewImg}
               alt="Rate us on Google"
-              className="w-56 h-auto object-contain hover:opacity-80 transition-opacity"
+              className="w-52 h-auto object-contain"
             />
-          </div>
+          </button>
         </div>
 
-        {/* Address Section */}
-        <div className="mt-5">
+        {/* Info rows — all anchored to a common left edge via inline-flex */}
+        <div className="mt-5 flex flex-col items-start gap-4">
+
+          {/* Location */}
           <button
-            className="flex items-center gap-3 cursor-pointer transition-opacity hover:opacity-80"
+            className="flex items-center gap-3 transition-opacity hover:opacity-80"
             onClick={() => window.open("https://maps.app.goo.gl/C7K6BijrGrvWTXyBA", "_blank")}
           >
-            <img src={mapsImg} alt="Google Maps" className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
+            <img src={mapsImg} alt="Google Maps" className="w-9 h-9 flex-shrink-0 rounded-lg object-cover" />
             <span className="text-sm font-medium" style={{ color: "#E8DFD1" }}>
               📍 Click to View Our Location
             </span>
           </button>
-        </div>
 
-        {/* Contact Section */}
-        <div className="mt-4 flex flex-col gap-3">
+          {/* Phone */}
           <button
-            className="flex items-center gap-3 cursor-pointer transition-opacity hover:opacity-80"
+            className="flex items-center gap-3 transition-opacity hover:opacity-80"
             onClick={() => window.open("tel:+918278251111")}
           >
-            <img src={callImg} alt="Call" className="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+            <img src={callImg} alt="Call" className="w-9 h-9 flex-shrink-0 rounded-full object-cover" />
             <span className="text-sm font-medium" style={{ color: "#E8DFD1" }}>+91 8278251111</span>
           </button>
+
+          {/* Email */}
           <button
-            className="flex items-center gap-3 cursor-pointer transition-opacity hover:opacity-80"
+            className="flex items-center gap-3 transition-opacity hover:opacity-80"
             onClick={() => window.open("mailto:info@barrelborn.in")}
           >
-            <img src={mailImg} alt="Email" className="w-9 h-9 rounded-lg object-cover flex-shrink-0" />
+            <img src={mailImg} alt="Email" className="w-9 h-9 flex-shrink-0 rounded-lg object-cover" />
             <span className="text-sm font-medium" style={{ color: "#E8DFD1" }}>info@barrelborn.in</span>
           </button>
+
         </div>
 
         {/* Website URL */}
         <p
-          className="mt-4 cursor-pointer text-sm"
+          className="mt-5 cursor-pointer text-sm"
           style={{ color: "#B8986A" }}
           onClick={() => window.open("https://www.barrelborn.in", "_blank")}
         >

@@ -56,7 +56,7 @@ export default function Welcome() {
           src={digitalMenuImg}
           alt="Digital Menu"
           className="w-full max-w-xs h-auto object-contain"
-          style={{ marginBottom: "-10%" }}
+          style={{ marginBottom: "-8%" }}
         />
 
         {/* Follow Our Socials — Social Icons */}
@@ -69,19 +69,19 @@ export default function Welcome() {
               onClick={() => handleSocialClick("https://www.instagram.com/barrelborn_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
               className="transition-opacity hover:opacity-80"
             >
-              <img src={instaImg} alt="Instagram" className="w-10 h-10 rounded-xl object-cover" />
+              <img src={instaImg} alt="Instagram" className="w-12 h-12 rounded-xl object-cover" />
             </button>
             <button
               onClick={() => handleSocialClick("https://facebook.com")}
               className="transition-opacity hover:opacity-80"
             >
-              <img src={fbImg} alt="Facebook" className="w-8 h-8 rounded-xl object-cover" />
+              <img src={fbImg} alt="Facebook" className="w-12 h-12 rounded-xl object-cover" />
             </button>
             <button
               onClick={() => handleSocialClick("https://youtube.com")}
               className="transition-opacity hover:opacity-80"
             >
-              <img src={ytImg} alt="YouTube" className="w-10 h-10 rounded-xl object-cover" />
+              <img src={ytImg} alt="YouTube" className="w-12 h-12 rounded-xl object-cover" />
             </button>
           </div>
         </div>
@@ -89,12 +89,12 @@ export default function Welcome() {
         {/* Explore Menu Button */}
         <button
           onClick={handleExploreMenu}
-          className="px-9 py-2.5 font-semibold border-2 rounded-full transition-colors flex items-center gap-2 text-sm"
-          style={{ borderColor: "#FFF500", color: "#000000", backgroundColor: "#FFF500", outline: "2px solid #FFF500", outlineOffset: "2px" }}
+          className="w-full max-w-xs py-3 font-semibold border-2 rounded-full transition-colors flex items-center justify-center gap-2 text-sm"
+          style={{ borderColor: "#FFF500", color: "#FFFFFF", backgroundColor: "#FFF500", outline: "2px solid #FFF500", outlineOffset: "2px" }}
           data-testid="button-explore-menu"
         >
-          <Utensils className="w-4 h-4" style={{ color: "#000000" }} />
-          <span>{t.exploreMenu}</span>
+          <Utensils className="w-4 h-4" style={{ color: "#FFFFFF" }} />
+          <span style={{ color: "#FFFFFF" }}>{t.exploreMenu}</span>
         </button>
 
         {/* Google Review badge — no label text */}
@@ -116,21 +116,21 @@ export default function Welcome() {
               className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
               onClick={() => window.open("https://maps.app.goo.gl/C7K6BijrGrvWTXyBA", "_blank")}
             >
-              <img src={mapsImg} alt="Google Maps" className="w-9 h-9 rounded-lg object-cover" />
+              <img src={mapsImg} alt="Google Maps" className="w-12 h-12 rounded-lg object-cover" />
               <span className="text-xs font-medium" style={{ color: "#000000" }}>Location</span>
             </button>
             <button
               className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
               onClick={() => window.open("tel:+918278251111")}
             >
-              <img src={callImg} alt="Call" className="w-9 h-9 rounded-full object-cover" />
+              <img src={callImg} alt="Call" className="w-12 h-12 rounded-full object-cover" />
               <span className="text-xs font-medium" style={{ color: "#000000" }}>Call Us</span>
             </button>
             <button
               className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
               onClick={() => window.open("mailto:info@barrelborn.in")}
             >
-              <img src={mailImg} alt="Email" className="w-9 h-9 rounded-lg object-cover" />
+              <img src={mailImg} alt="Email" className="w-12 h-12 rounded-lg object-cover" />
               <span className="text-xs font-medium" style={{ color: "#000000" }}>Email Us</span>
             </button>
           </div>

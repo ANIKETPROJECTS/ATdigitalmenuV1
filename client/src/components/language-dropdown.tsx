@@ -38,20 +38,20 @@ export default function LanguageDropdown({ className = "" }: LanguageDropdownPro
       <button
         onClick={() => { setOpen((o) => !o); setSearch(""); }}
         disabled={isTranslating}
-        className="flex items-center gap-1.5 transition-all duration-200 hover:opacity-70 disabled:opacity-50"
+        className="flex items-center gap-2 transition-all duration-200 hover:opacity-70 disabled:opacity-50"
         data-testid="button-language-toggle"
         aria-label="Select language"
       >
         {isTranslating ? (
-          <Loader2 className="w-5 h-5 animate-spin" style={{ color: "#000000" }} />
+          <Loader2 className="w-7 h-7 animate-spin" style={{ color: "#000000" }} />
         ) : (
-          <img src={googleTranslateImg} alt="Translate" className="w-5 h-5 object-contain" />
+          <img src={googleTranslateImg} alt="Translate" className="w-7 h-7 object-contain" />
         )}
-        <span className="text-xs font-semibold tracking-wide" style={{ color: "#000000" }}>
+        <span className="text-base font-semibold tracking-wide" style={{ color: "#000000" }}>
           {current.native}
         </span>
         <ChevronDown
-          className="w-3.5 h-3.5 transition-transform duration-200"
+          className="w-5 h-5 transition-transform duration-200"
           style={{ color: "#000000", transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         />
       </button>

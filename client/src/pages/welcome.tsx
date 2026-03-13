@@ -1,4 +1,5 @@
-import { Utensils, Star } from "lucide-react";
+import { Utensils } from "lucide-react";
+import googleReviewImg from "@assets/Google_Review_1773389968949.png";
 import { useLocation } from "wouter";
 import { useWelcomeAudio } from "../hooks/useWelcomeAudio";
 import { MediaPreloader } from "../components/media-preloader";
@@ -63,7 +64,7 @@ export default function Welcome() {
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex gap-3 -mt-14">
+        <div className="flex gap-6 -mt-14">
           <button
             onClick={() => handleSocialClick("https://www.instagram.com/barrelborn_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==")}
             className="w-11 h-11 flex items-center justify-center transition-opacity hover:opacity-80"
@@ -74,7 +75,7 @@ export default function Welcome() {
             onClick={() => handleSocialClick("https://facebook.com")}
             className="w-11 h-11 flex items-center justify-center transition-opacity hover:opacity-80"
           >
-            <img src={fbImg} alt="Facebook" className="w-11 h-11 rounded-xl object-cover" />
+            <img src={fbImg} alt="Facebook" className="w-9 h-9 rounded-xl object-cover" />
           </button>
           <button
             onClick={() => handleSocialClick("https://youtube.com")}
@@ -101,18 +102,14 @@ export default function Welcome() {
             {t.rateOnGoogle}
           </p>
           <div
-            className="flex justify-center cursor-pointer gap-1"
+            className="flex justify-center cursor-pointer"
             onClick={handleReviewClick}
           >
-            {[1, 2, 3, 4, 5].map((star) => (
-              <div
-                key={star}
-                className="rounded-full flex items-center justify-center"
-                style={{ border: "1px solid #B8986A", padding: "2px" }}
-              >
-                <Star className="w-7 h-7" style={{ color: "#B8986A", fill: "#B8986A" }} />
-              </div>
-            ))}
+            <img
+              src={googleReviewImg}
+              alt="Rate us on Google"
+              className="w-56 h-auto object-contain hover:opacity-80 transition-opacity"
+            />
           </div>
         </div>
 

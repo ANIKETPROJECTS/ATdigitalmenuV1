@@ -63,7 +63,7 @@ export default function Welcome() {
         {/* Explore button */}
         <button
           onClick={handleExploreMenu}
-          className="w-full max-w-xs py-3 font-semibold border-2 rounded-full transition-colors flex items-center justify-center gap-2 text-sm"
+          className="w-full max-w-xs py-3 font-normal border-2 rounded-full transition-colors flex items-center justify-center gap-2 text-sm"
           style={{ borderColor: "#FFF500", color: "#FFFFFF", backgroundColor: "#FFF500", outline: "2px solid #FFF500", outlineOffset: "2px" }}
           data-testid="button-explore-menu"
         >
@@ -72,7 +72,7 @@ export default function Welcome() {
         </button>
 
         {/* Follow Our Socials label */}
-        <p className="text-xs font-bold tracking-widest uppercase" style={{ color: "#000000" }}>
+        <p className="text-xs font-normal tracking-widest" style={{ color: "#000000" }}>
           Follow Our Socials
         </p>
 
@@ -110,7 +110,7 @@ export default function Welcome() {
         </div>
 
         {/* Connect With Us label */}
-        <p className="text-xs font-bold tracking-widest uppercase" style={{ color: "#000000" }}>
+        <p className="text-xs font-normal tracking-widest" style={{ color: "#000000" }}>
           Connect With Us
         </p>
 

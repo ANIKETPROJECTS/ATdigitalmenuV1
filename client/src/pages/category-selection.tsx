@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ProductCard from "@/components/product-card";
 import HamburgerMenu from "@/components/hamburger-menu";
-import LanguageDropdown from "@/components/language-dropdown";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { categoryTranslationMap } from "@/lib/translations";
 import { getMainCategory, mainCategories } from "@/lib/menu-categories";
@@ -309,7 +308,6 @@ export default function CategorySelection() {
             </div>
 
             <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3 flex-shrink-0">
-              <LanguageDropdown />
               <Button
                 variant="ghost"
                 size="icon"

@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import ProductCard from "@/components/product-card";
 import DishDetailModal from "@/components/dish-detail-modal";
-import LanguageDropdown from "@/components/language-dropdown";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { categoryTranslationMap } from "@/lib/translations";
 import { getMainCategory } from "@/lib/menu-categories";
@@ -218,9 +217,7 @@ export default function SubcategoryProducts() {
               </h1>
             </div>
 
-            <div className="flex items-center">
-              <LanguageDropdown />
-            </div>
+            <div className="w-9" />
           </div>
         </div>
       </header>

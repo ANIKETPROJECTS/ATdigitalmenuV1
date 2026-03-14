@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { mainCategories } from "@/lib/menu-categories";
 import { categoryTranslationMap } from "@/lib/translations";
 import HamburgerMenu from "@/components/hamburger-menu";
-import LanguageDropdown from "@/components/language-dropdown";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Dialog,
@@ -366,7 +365,7 @@ export default function MenuLanding() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#3D3100" }}>
       <header className="sticky top-0 z-30 elegant-shadow" style={{ backgroundColor: "#3D3100" }}>
-        <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4">
+        <div className="container mx-auto px-2 sm:px-4 py-5 sm:py-7">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
               <Button
@@ -384,14 +383,13 @@ export default function MenuLanding() {
             <div className="absolute left-1/2 transform -translate-x-1/2">
               <img
                 src={logoImg}
-                alt="Barrel Born Logo"
-                className="h-32 sm:h-36 md:h-40 w-auto object-contain"
+                alt="AT Digital Menu Logo"
+                className="h-40 sm:h-44 md:h-48 w-auto object-contain"
                 data-testid="img-logo"
               />
             </div>
 
             <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3 flex-shrink-0">
-              <LanguageDropdown />
               <Button
                 variant="ghost"
                 size="icon"

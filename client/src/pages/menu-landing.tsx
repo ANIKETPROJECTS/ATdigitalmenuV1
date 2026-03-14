@@ -579,7 +579,7 @@ export default function MenuLanding() {
         </DialogContent>
       </Dialog>
 
-      <div className="container mx-auto px-3 sm:px-4 py-2">
+      <div className="container mx-auto px-3 sm:px-4 pt-5 pb-2">
         {/* Gold gradient border wrapper for carousel */}
         <div
           className="rounded-xl p-[2px] mb-3"
@@ -633,7 +633,7 @@ export default function MenuLanding() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 gap-2">
           {mainCategories
             .filter((cat) => cat.id !== "wine" && !cat.hidden)
             .map((category, index) => {

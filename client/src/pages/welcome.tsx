@@ -13,6 +13,7 @@ import ytImg from "@assets/youtube_1773345412112.png";
 import mapsImg from "@assets/logo_(1)_1773390711534.png";
 import callImg from "@assets/call_1773390891033.png";
 import mailImg from "@assets/communication_1773390476300.png";
+import whatsappImg from "@assets/apple_1773515172898.png";
 
 export default function Welcome() {
   const [, setLocation] = useLocation();
@@ -120,27 +121,34 @@ export default function Welcome() {
         </p>
 
         {/* Connect icons row */}
-        <div className="flex items-start justify-center gap-6">
+        <div className="flex items-start justify-center gap-4">
           <button
             className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
             onClick={() => window.open("https://maps.app.goo.gl/C7K6BijrGrvWTXyBA", "_blank")}
           >
             <img src={mapsImg} alt="Google Maps" className="w-12 h-12 rounded-lg object-cover" />
-            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>LOCATE US</span>
+            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>LOCATE</span>
           </button>
           <button
             className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
             onClick={() => window.open("tel:+918278251111")}
           >
             <img src={callImg} alt="Call" className="w-12 h-12 rounded-full object-cover" />
-            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>CALL US</span>
+            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>CALL</span>
+          </button>
+          <button
+            className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
+            onClick={() => window.open("https://wa.me/918278251111", "_blank")}
+          >
+            <img src={whatsappImg} alt="WhatsApp" className="w-12 h-12 rounded-xl object-cover" />
+            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>CHAT</span>
           </button>
           <button
             className="flex flex-col items-center gap-0.5 transition-opacity hover:opacity-80"
             onClick={() => window.open("mailto:info@barrelborn.in")}
           >
             <img src={mailImg} alt="Email" className="w-12 h-12 rounded-lg object-cover" />
-            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>EMAIL US</span>
+            <span className="text-xs font-medium" style={{ color: "#FFFFFF" }}>EMAIL</span>
           </button>
         </div>
 

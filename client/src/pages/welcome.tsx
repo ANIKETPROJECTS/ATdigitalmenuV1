@@ -64,7 +64,7 @@ export default function Welcome() {
         <button
           onClick={handleExploreMenu}
           className="w-full max-w-xs py-3 font-semibold rounded-full transition-opacity hover:opacity-90 flex items-center justify-center gap-2"
-          style={{ background: "linear-gradient(90deg, #d4af37, #e6c55a)", border: "none", color: "#3D3100", marginTop: "-30px", boxShadow: "inset 0 0 0 2px #3D3100", fontSize: "15px" }}
+          style={{ background: "linear-gradient(90deg, #d4af37, #e6c55a)", border: "none", color: "#3D3100", marginTop: "-30px", boxShadow: "inset 0 0 0 2px #3D3100, 0 0 0 2px #FFFFFF, 0 0 0 4px #d4af37", fontSize: "15px" }}
           data-testid="button-explore-menu"
         >
           <img src={spoonForkImg} alt="" className="w-6 h-6 object-contain" style={{ mixBlendMode: "multiply" }} />

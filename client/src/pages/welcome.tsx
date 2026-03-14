@@ -146,8 +146,8 @@ export default function Welcome() {
 
         {/* Footer */}
         <p
-          className="cursor-pointer font-medium"
-          style={{ color: "#FFFFFF", fontSize: "10px" }}
+          className="cursor-pointer text-xs font-medium"
+          style={{ color: "#FFFFFF", textTransform: "lowercase" }}
           onClick={() => window.open("https://www.atdigitalmenu.com", "_blank")}
         >
           www.atdigitalmenu.com

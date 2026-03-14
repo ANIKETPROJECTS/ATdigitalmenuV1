@@ -653,14 +653,18 @@ export default function MenuLanding() {
                     background: "linear-gradient(90deg, #D4AF37, #E6C55A)",
                     padding: "2px",
                     borderRadius: "10px",
-                    aspectRatio: "1/1.05",
-                    display: "flex",
                   }}
                 >
                   <button
                     onClick={() => handleCategoryClick(category.id)}
-                    className="relative overflow-hidden group flex-1"
-                    style={{ borderRadius: "8px", minHeight: 0 }}
+                    className="group overflow-hidden"
+                    style={{
+                      borderRadius: "8px",
+                      display: "block",
+                      width: "100%",
+                      aspectRatio: "1 / 1.05",
+                      position: "relative",
+                    }}
                     data-testid={`tile-${category.id}`}
                   >
                     <img
@@ -670,7 +674,8 @@ export default function MenuLanding() {
                           : categoryImages[category.id]
                       }
                       alt={label as string}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                      className="transition-transform duration-500 group-hover:scale-110"
                       onError={() => {
                         setFailedImages((prev) => new Set(prev).add(category.id));
                       }}

@@ -72,7 +72,7 @@ export default function Welcome() {
         </button>
 
         {/* Follow Our Socials label */}
-        <p className="text-xs font-normal tracking-widest" style={{ color: "#FFFFFF" }}>
+        <p className="text-xs font-normal tracking-widest" style={{ color: "#FFFFFF", marginTop: "16px" }}>
           Follow Our Socials
         </p>
 
@@ -99,7 +99,7 @@ export default function Welcome() {
         </div>
 
         {/* Click to Rate Us label */}
-        <p className="text-xs font-normal tracking-widest" style={{ color: "#FFFFFF" }}>
+        <p className="text-xs font-normal tracking-widest" style={{ color: "#FFFFFF", marginTop: "16px" }}>
           Click To Rate Us
         </p>
 

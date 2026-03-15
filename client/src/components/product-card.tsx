@@ -18,7 +18,7 @@ export default function ProductCard({ item, onClick }: ProductCardProps) {
 
   return (
     <div
-      className="flex flex-col overflow-hidden h-full cursor-pointer group transition-all duration-300"
+      className="flex flex-col overflow-hidden cursor-pointer group transition-all duration-300"
       style={{
         borderRadius: "10px",
         backgroundColor: "#1A1408",
@@ -27,7 +27,7 @@ export default function ProductCard({ item, onClick }: ProductCardProps) {
       onClick={() => onClick?.(item)}
       data-testid={`card-dish-${item._id?.toString()}`}
     >
-      <div className="relative w-full overflow-hidden" style={{ borderRadius: "10px 10px 0 0", height: "190px" }}>
+      <div className="relative w-full flex-shrink-0 overflow-hidden" style={{ borderRadius: "10px 10px 0 0", height: "190px" }}>
         <img
           src={imageUrl}
           alt={item.name}
@@ -41,9 +41,9 @@ export default function ProductCard({ item, onClick }: ProductCardProps) {
         />
       </div>
 
-      <div className="flex flex-col flex-1 p-2 md:p-3">
+      <div className="flex flex-col p-2 md:p-3">
         <h3
-          className="text-sm sm:text-base font-semibold leading-tight mb-1 line-clamp-2 tracking-wide uppercase"
+          className="text-sm sm:text-base font-semibold leading-tight mb-1 tracking-wide uppercase"
           style={{
             color: "#D4AF37",
             fontFamily: "'DM Sans', sans-serif",
@@ -56,7 +56,7 @@ export default function ProductCard({ item, onClick }: ProductCardProps) {
           {item.name}
         </h3>
         <p
-          className="text-xs sm:text-sm leading-relaxed mb-1 truncate"
+          className="text-xs sm:text-sm mb-2 truncate"
           style={{
             color: "#DCD4C8",
             fontFamily: "'DM Sans', sans-serif",
@@ -65,7 +65,7 @@ export default function ProductCard({ item, onClick }: ProductCardProps) {
         >
           {item.description || "No description available"}
         </p>
-        <div className="mt-auto pt-2" style={{ borderTop: "1px solid rgba(212,175,55,0.2)" }}>
+        <div className="pt-2" style={{ borderTop: "1px solid rgba(212,175,55,0.2)" }}>
           <span
             className="text-sm sm:text-base font-bold block tracking-wide"
             style={{

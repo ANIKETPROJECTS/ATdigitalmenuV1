@@ -596,7 +596,7 @@ export default function MenuLanding() {
                 <img
                   src={logoImg}
                   alt="AT Digital Menu"
-                  className="w-40 object-contain mb-1"
+                  className="w-52 object-contain mb-1"
                   style={{ filter: "drop-shadow(0 0 12px rgba(212,175,55,0.35))" }}
                 />
 
@@ -658,11 +658,11 @@ export default function MenuLanding() {
                             <InputOTPSlot
                               key={i}
                               index={i}
-                              className="h-9 w-[26px] rounded-lg text-sm font-semibold first:rounded-l-lg first:border-l last:rounded-r-lg transition-all"
+                              className="h-10 w-[27px] rounded-lg text-sm font-bold first:rounded-l-lg first:border-l last:rounded-r-lg transition-all"
                               style={{
-                                background: "rgba(212,175,55,0.08)",
-                                border: "1px solid rgba(212,175,55,0.35)",
-                                color: "#E8D8B4",
+                                background: "rgba(212,175,55,0.14)",
+                                border: "1.5px solid rgba(212,175,55,0.6)",
+                                color: "#F0E080",
                                 borderRadius: "8px",
                               }}
                             />
@@ -683,8 +683,7 @@ export default function MenuLanding() {
                     disabled={isSubmitting || customerName.length === 0 || customerPhone.length !== 10}
                     className="w-full h-12 rounded-full font-bold tracking-widest text-sm transition-all active:scale-95 disabled:opacity-40 mt-2"
                     style={{
-                      background: "linear-gradient(90deg, #B8986A, #D4AF37, #E6C55A, #D4AF37, #B8986A)",
-                      backgroundSize: "200% 100%",
+                      background: "linear-gradient(90deg, #D4AF37, #E6C55A)",
                       color: "#1C1500",
                       letterSpacing: "0.15em",
                       boxShadow: "0 4px 20px rgba(212,175,55,0.35)",
@@ -1169,7 +1168,7 @@ export default function MenuLanding() {
         </AnimatePresence>
 
         {/* Floating Chef Button — bottom left */}
-        <motion.button
+        {!showHamburgerMenu && <motion.button
           className="fixed bottom-6 left-4 z-40 flex items-center gap-2 pl-1 pr-4 py-1 rounded-full shadow-lg"
           style={{
             background: showSmartMenu
@@ -1208,11 +1207,11 @@ export default function MenuLanding() {
               What to order?
             </span>
           </div>
-        </motion.button>
+        </motion.button>}
       </>
 
       {/* Call Waiter Floating Button */}
-      <div className="fixed bottom-6 right-4 z-40 flex flex-col items-end gap-2">
+      {!showHamburgerMenu && <div className="fixed bottom-6 right-4 z-40 flex flex-col items-end gap-2">
         <AnimatePresence>
           {waiterCalled && (
             <motion.button
@@ -1310,7 +1309,7 @@ export default function MenuLanding() {
             )}
           </AnimatePresence>
         </motion.button>
-      </div>
+      </div>}
     </div>
   );
 }

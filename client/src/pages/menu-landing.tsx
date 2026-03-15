@@ -1,16 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
 import {
   ArrowLeft,
   Menu as MenuIcon,
   X,
   Tag,
-  Copy,
-  Check,
   Calendar,
-  Percent,
-  Info,
 } from "lucide-react";
 
 import { useLocation } from "wouter";
@@ -20,12 +15,6 @@ import { categoryTranslationMap } from "@/lib/translations";
 import HamburgerMenu from "@/components/hamburger-menu";
 import FloatingButtons from "@/components/floating-buttons";
 import { useLanguage } from "@/contexts/LanguageContext";
-import {
-  Dialog,
-  DialogContent,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import {
@@ -208,165 +197,174 @@ function CouponCard({
   );
 }
 
-function CouponDetailModal({
-  coupon,
+function CouponsFullScreen({
+  open,
   onClose,
 }: {
-  coupon: (typeof coupons)[0] | null;
+  open: boolean;
   onClose: () => void;
 }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    if (!coupon) return;
-    navigator.clipboard.writeText(coupon.code).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
   return (
     <AnimatePresence>
-      {coupon && (
+      {open && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex flex-col"
+          style={{ backgroundColor: "#3D3100" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40 }}
+          transition={{ type: "spring", damping: 28, stiffness: 300 }}
         >
-          <motion.div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            onClick={onClose}
-          />
-          <motion.div
-            className="relative w-full sm:max-w-sm mx-4 sm:mx-auto rounded-2xl overflow-hidden"
+          {/* Top gold shimmer bar */}
+          <div
+            className="h-[3px] w-full flex-shrink-0"
             style={{
-              backgroundColor: "#1A1A1A",
-              border: "1px solid #B8986A44",
+              background:
+                "linear-gradient(90deg, transparent, #D4AF37, #F0CC60, #D4AF37, transparent)",
             }}
-            initial={{ y: 80, opacity: 0, scale: 0.95 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 80, opacity: 0, scale: 0.95 }}
-            transition={{ type: "spring", damping: 26, stiffness: 300 }}
+          />
+
+          {/* Header */}
+          <div
+            className="flex items-center justify-between px-5 py-4 flex-shrink-0"
+            style={{ borderBottom: "1px solid rgba(212,175,55,0.18)" }}
           >
-            {/* Header gradient bar */}
-            <div
-              className="h-1.5 w-full"
-              style={{
-                background: "linear-gradient(90deg, #B8986A, #C9A55C, #B8986A)",
-              }}
-            />
-
-            <div className="p-5">
-              {/* Close */}
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 w-7 h-7 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: "#2A2A2A", color: "#888" }}
+            <div>
+              <p
+                className="text-[10px] uppercase tracking-[0.3em] font-light mb-0.5"
+                style={{ color: "#D4AF37" }}
               >
-                <X className="w-3.5 h-3.5" />
-              </button>
+                Exclusive Offers
+              </p>
+              <h2
+                className="text-2xl font-black leading-none uppercase tracking-widest"
+                style={{
+                  color: "#D4AF37",
+                  fontFamily: "'Cormorant Garamond', serif",
+                  letterSpacing: "0.18em",
+                }}
+              >
+                Coupons &amp; Deals
+              </h2>
+            </div>
 
-              {/* Tag icon + title */}
-              <div className="flex items-center gap-3 mb-4">
+            {/* Gold close button */}
+            <button
+              onClick={onClose}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all active:scale-90"
+              style={{
+                background: "rgba(212,175,55,0.12)",
+                border: "1.5px solid rgba(212,175,55,0.45)",
+                color: "#D4AF37",
+              }}
+              data-testid="button-close-coupons-fullscreen"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Scrollable coupon list */}
+          <div className="flex-1 overflow-y-auto px-4 py-5 space-y-4">
+            {coupons.map((coupon, index) => (
+              <motion.div
+                key={coupon.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.07 }}
+              >
+                {/* Full-width coupon card — same design as CouponCard */}
                 <div
-                  className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "#C9A55C22" }}
+                  className="flex rounded-2xl overflow-hidden relative w-full"
+                  style={{
+                    border: "1.5px solid #D4AF37",
+                    minHeight: "104px",
+                    boxShadow: "0 4px 20px rgba(212,175,55,0.18)",
+                  }}
                 >
-                  <Tag className="w-5 h-5" style={{ color: "#C9A55C" }} />
-                </div>
-                <div>
-                  <p
-                    className="text-xs uppercase tracking-widest mb-0.5"
-                    style={{ color: "#C9A55C" }}
-                  >
-                    {coupon.tag}
-                  </p>
-                  <h3
-                    className="text-2xl font-black leading-none"
+                  {/* LEFT — gold gradient panel */}
+                  <div
+                    className="flex flex-col items-center justify-center px-5 py-4 flex-shrink-0"
                     style={{
-                      color: "#FFFFFF",
-                      fontFamily: "'Cormorant Garamond', serif",
+                      width: "36%",
+                      background: "linear-gradient(135deg, #D4AF37, #E6C55A)",
+                      borderRight: "1.5px dashed rgba(61,49,0,0.35)",
                     }}
                   >
-                    {coupon.title}
-                  </h3>
-                  <p className="text-sm mt-0.5" style={{ color: "#DCD4C8" }}>
-                    {coupon.subtitle}
-                  </p>
-                </div>
-              </div>
+                    <Tag
+                      className="w-4 h-4 mb-1"
+                      style={{ color: "#3D3100", opacity: 0.8 }}
+                    />
+                    <p
+                      className="text-xl font-black leading-none text-center"
+                      style={{
+                        color: "#3D3100",
+                        fontFamily: "'DM Sans', sans-serif",
+                        letterSpacing: "-0.5px",
+                      }}
+                    >
+                      {coupon.title}
+                    </p>
+                    <p
+                      className="text-[9px] uppercase tracking-widest mt-1.5 text-center font-semibold"
+                      style={{ color: "#3D3100", opacity: 0.75 }}
+                    >
+                      {coupon.tag}
+                    </p>
+                  </div>
 
-              {/* Dashed divider */}
-              <div
-                className="border-t border-dashed my-4"
-                style={{ borderColor: "#B8986A44" }}
-              />
-
-              {/* Details */}
-              <div className="space-y-2.5 mb-4">
-                <div className="flex items-start gap-2.5">
-                  <Info
-                    className="w-4 h-4 mt-0.5 flex-shrink-0"
-                    style={{ color: "#C9A55C" }}
-                  />
-                  <p className="text-sm" style={{ color: "#DCD4C8" }}>
-                    {coupon.description}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Calendar
-                    className="w-4 h-4 flex-shrink-0"
-                    style={{ color: "#C9A55C" }}
-                  />
-                  <p className="text-sm" style={{ color: "#DCD4C8" }}>
-                    {coupon.validity}
-                  </p>
-                </div>
-              </div>
-
-              {/* Dashed divider */}
-              <div
-                className="border-t border-dashed mb-4"
-                style={{ borderColor: "#B8986A44" }}
-              />
-
-              {/* Code + Copy */}
-              <div
-                className="flex items-center justify-between rounded-xl px-4 py-3"
-                style={{ backgroundColor: "#242424" }}
-              >
-                <div>
-                  <p
-                    className="text-[10px] uppercase tracking-widest mb-0.5"
-                    style={{ color: "#888" }}
+                  {/* RIGHT — details on dark background */}
+                  <div
+                    className="flex flex-col justify-center px-4 py-3 text-left flex-1 min-w-0"
+                    style={{ background: "#1A1408" }}
                   >
-                    Coupon Code
-                  </p>
-                  <p
-                    className="text-lg font-black tracking-widest"
-                    style={{ color: "#C9A55C", fontFamily: "monospace" }}
-                  >
-                    {coupon.code}
-                  </p>
+                    <p
+                      className="text-sm font-black tracking-widest leading-none uppercase"
+                      style={{
+                        color: "#D4AF37",
+                        fontFamily: "'DM Sans', sans-serif",
+                      }}
+                    >
+                      {coupon.code}
+                    </p>
+                    <p
+                      className="text-[11px] mt-1.5 leading-snug tracking-wide"
+                      style={{ color: "#E6C55A", opacity: 0.9 }}
+                    >
+                      {coupon.subtitle}
+                    </p>
+                    <p
+                      className="text-[10px] mt-1 leading-snug tracking-wide"
+                      style={{ color: "#DCD4C8", opacity: 0.55 }}
+                    >
+                      {coupon.description}
+                    </p>
+                    {/* Validity */}
+                    <div className="flex items-center gap-1.5 mt-2">
+                      <Calendar
+                        className="w-3 h-3 flex-shrink-0"
+                        style={{ color: "#D4AF37", opacity: 0.7 }}
+                      />
+                      <p
+                        className="text-[9px] uppercase tracking-wider"
+                        style={{ color: "#D4AF37", opacity: 0.7 }}
+                      >
+                        {coupon.validity}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <button
-                  onClick={handleCopy}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 active:scale-95"
-                  style={{
-                    backgroundColor: copied ? "#22c55e" : "#C9A55C",
-                    color: "#1A1A1A",
-                  }}
-                  data-testid="button-copy-coupon-modal"
-                >
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                  {copied ? "Copied!" : "Copy"}
-                </button>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom gold shimmer bar */}
+          <div
+            className="h-[2px] w-full flex-shrink-0"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, #D4AF37, transparent)",
+            }}
+          />
         </motion.div>
       )}
     </AnimatePresence>
@@ -384,9 +382,7 @@ export default function MenuLanding() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
-  const [selectedCoupon, setSelectedCoupon] = useState<
-    (typeof coupons)[0] | null
-  >(null);
+  const [showCoupons, setShowCoupons] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<
     (typeof promotionalImages)[0] | null
   >(null);
@@ -722,7 +718,7 @@ export default function MenuLanding() {
               <CouponCard
                 key={`${coupon.id}-${index}`}
                 coupon={coupon}
-                onClick={() => setSelectedCoupon(coupon)}
+                onClick={() => setShowCoupons(true)}
               />
             ))}
           </div>
@@ -796,9 +792,9 @@ export default function MenuLanding() {
         </div>
       </div>
 
-      <CouponDetailModal
-        coupon={selectedCoupon}
-        onClose={() => setSelectedCoupon(null)}
+      <CouponsFullScreen
+        open={showCoupons}
+        onClose={() => setShowCoupons(false)}
       />
 
       {/* Image Lightbox */}

@@ -47,26 +47,26 @@ export default function FloatingButtons() {
           >
             {/* Header */}
             <div
-              className="flex items-center justify-between px-5 pt-12 pb-4 flex-shrink-0"
+              className="relative flex items-center justify-between px-5 pt-5 pb-4 flex-shrink-0"
               style={{ borderBottom: "1px solid rgba(212,175,55,0.15)" }}
             >
               {/* Title */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <div
-                  className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0"
+                  className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0"
                   style={{ border: "2px solid rgba(212,175,55,0.6)" }}
                 >
                   <img src={chefsHatImg} alt="Smart Picks" className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h2
-                    className="text-sm font-bold tracking-widest uppercase"
+                    className="text-xl font-bold tracking-widest uppercase"
                     style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
                   >
                     Smart Picks
                   </h2>
                   <p
-                    className="text-[10px]"
+                    className="text-sm"
                     style={{ color: "rgba(212,175,55,0.6)", fontFamily: "'DM Sans', sans-serif" }}
                   >
                     Not sure what to order? We've got you!
@@ -74,10 +74,10 @@ export default function FloatingButtons() {
                 </div>
               </div>
 
-              {/* Gold X close button — top right */}
+              {/* Gold X close button — top right, pushed up */}
               <button
                 onClick={() => setShowSmartMenu(false)}
-                className="flex items-center justify-center w-9 h-9 rounded-full transition-all active:scale-90"
+                className="absolute right-5 -top-1 flex items-center justify-center w-9 h-9 rounded-full transition-all active:scale-90"
                 style={{
                   background: "linear-gradient(135deg, #D4AF37, #E6C55A)",
                   border: "none",

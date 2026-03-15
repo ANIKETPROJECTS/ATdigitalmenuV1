@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, QrCode, Copy, Check, ExternalLink, Utensils, Users, ChevronDown } from "lucide-react";
+import { X, QrCode, Copy, Check, ExternalLink, Utensils, Users, ChevronDown, ChevronRight } from "lucide-react";
 import { mainCategories } from "@/lib/menu-categories";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { categoryTranslationMap } from "@/lib/translations";
@@ -410,7 +410,7 @@ export default function HamburgerMenu({
                   </p>
                 </div>
                 <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(90deg, #D4AF37, #E6C55A)" }}>
-                  <span className="text-[#1C1500] font-black text-sm">›</span>
+                  <ChevronRight className="w-4 h-4" style={{ color: "#1C1500", strokeWidth: 3 }} />
                 </div>
               </motion.button>
 
@@ -500,7 +500,7 @@ export default function HamburgerMenu({
                     <img src={mapsImg} alt="Location" className="w-10 h-10 object-contain flex-shrink-0" />
                     <div>
                       <p className="text-sm font-bold" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>atdigitalmenu</p>
-                      <p className="text-xs mt-0.5" style={{ color: "rgba(220,212,200,0.55)", fontFamily: "'DM Sans', sans-serif" }}>Thane, Maharashtra</p>
+                      <p className="text-xs mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>Thane, Maharashtra</p>
                     </div>
                   </div>
                   {/* Contact */}
@@ -511,10 +511,10 @@ export default function HamburgerMenu({
                         {t.contactUs}
                       </p>
                       <button onClick={() => window.open(`tel:${PHONE.replace(/\s/g, "")}`, "_self")}
-                        className="text-sm font-bold transition-opacity hover:opacity-80" style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}>
+                        className="text-sm font-bold transition-opacity hover:opacity-80" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>
                         {PHONE}
                       </button>
-                      <p className="text-[10px] mt-0.5" style={{ color: "rgba(220,212,200,0.45)", fontFamily: "'DM Sans', sans-serif" }}>{t.forReservations}</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>{t.forReservations}</p>
                     </div>
                   </div>
                   {/* Hours */}
@@ -522,7 +522,7 @@ export default function HamburgerMenu({
                     <img src={clockImg} alt="Hours" className="w-10 h-10 object-contain flex-shrink-0" />
                     <div>
                       <p className="text-sm font-bold" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>11:00 AM – 11:30 PM</p>
-                      <p className="text-[10px] mt-0.5" style={{ color: "rgba(220,212,200,0.45)", fontFamily: "'DM Sans', sans-serif" }}>{t.openAllDays}</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>{t.openAllDays}</p>
                     </div>
                   </div>
                   {/* Instagram */}
@@ -530,10 +530,10 @@ export default function HamburgerMenu({
                     <img src={instaImg} alt="Instagram" className="w-10 h-10 object-contain rounded-xl flex-shrink-0" />
                     <div>
                       <button onClick={() => window.open("https://www.instagram.com/atdigitalmenu", "_blank", "noopener,noreferrer")}
-                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}>
-                        @atdigitalmenu <ExternalLink className="w-3 h-3" style={{ color: "rgba(212,175,55,0.5)" }} />
+                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>
+                        @atdigitalmenu <ExternalLink className="w-3 h-3" style={{ color: "rgba(255,255,255,0.5)" }} />
                       </button>
-                      <p className="text-[10px] mt-0.5" style={{ color: "rgba(220,212,200,0.45)", fontFamily: "'DM Sans', sans-serif" }}>{t.followForUpdates}</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>{t.followForUpdates}</p>
                     </div>
                   </div>
                   {/* Facebook */}
@@ -541,10 +541,10 @@ export default function HamburgerMenu({
                     <img src={fbImg} alt="Facebook" className="w-10 h-10 object-contain rounded-xl flex-shrink-0" />
                     <div>
                       <button onClick={() => window.open("https://facebook.com/atdigitalmenu", "_blank", "noopener,noreferrer")}
-                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}>
-                        atdigitalmenu <ExternalLink className="w-3 h-3" style={{ color: "rgba(212,175,55,0.5)" }} />
+                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>
+                        atdigitalmenu <ExternalLink className="w-3 h-3" style={{ color: "rgba(255,255,255,0.5)" }} />
                       </button>
-                      <p className="text-[10px] mt-0.5" style={{ color: "rgba(220,212,200,0.45)", fontFamily: "'DM Sans', sans-serif" }}>Follow on Facebook</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>Follow on Facebook</p>
                     </div>
                   </div>
                   {/* YouTube */}
@@ -552,10 +552,10 @@ export default function HamburgerMenu({
                     <img src={ytImg} alt="YouTube" className="w-10 h-10 object-contain rounded-xl flex-shrink-0" />
                     <div>
                       <button onClick={() => window.open("https://youtube.com/@atdigitalmenu", "_blank", "noopener,noreferrer")}
-                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}>
-                        atdigitalmenu <ExternalLink className="w-3 h-3" style={{ color: "rgba(212,175,55,0.5)" }} />
+                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>
+                        atdigitalmenu <ExternalLink className="w-3 h-3" style={{ color: "rgba(255,255,255,0.5)" }} />
                       </button>
-                      <p className="text-[10px] mt-0.5" style={{ color: "rgba(220,212,200,0.45)", fontFamily: "'DM Sans', sans-serif" }}>Watch on YouTube</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>Watch on YouTube</p>
                     </div>
                   </div>
                   {/* WhatsApp */}
@@ -563,10 +563,10 @@ export default function HamburgerMenu({
                     <img src={whatsappImg} alt="WhatsApp" className="w-10 h-10 object-contain rounded-xl flex-shrink-0" />
                     <div>
                       <button onClick={() => window.open("https://wa.me/919619523254", "_blank", "noopener,noreferrer")}
-                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}>
-                        {PHONE} <ExternalLink className="w-3 h-3" style={{ color: "rgba(212,175,55,0.5)" }} />
+                        className="text-sm font-bold flex items-center gap-1 transition-opacity hover:opacity-80" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>
+                        {PHONE} <ExternalLink className="w-3 h-3" style={{ color: "rgba(255,255,255,0.5)" }} />
                       </button>
-                      <p className="text-[10px] mt-0.5" style={{ color: "rgba(220,212,200,0.45)", fontFamily: "'DM Sans', sans-serif" }}>Chat on WhatsApp</p>
+                      <p className="text-[10px] mt-0.5" style={{ color: "#FFFFFF", fontFamily: "'DM Sans', sans-serif" }}>Chat on WhatsApp</p>
                     </div>
                   </div>
                 </div>

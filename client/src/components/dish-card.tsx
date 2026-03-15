@@ -68,30 +68,17 @@ export default function DishCard({ item }: DishCardProps) {
             </h3>
           </div>
 
-          {/* Description — always exactly 1 line tall */}
-          <div
-            className="mt-1"
+          {/* Description — single line, truncated with ellipsis */}
+          <p
+            className="text-xs md:text-sm mt-1 truncate"
             style={{
-              height: "1.5em",
-              lineHeight: "1.5em",
-              overflow: "hidden",
-              display: "-webkit-box",
-              WebkitLineClamp: 1,
-              WebkitBoxOrient: "vertical",
+              color: "#DCD4C8",
+              fontFamily: "'DM Sans', sans-serif",
+              opacity: 0.8,
             }}
           >
-            <p
-              className="text-xs md:text-sm"
-              style={{
-                color: "#DCD4C8",
-                fontFamily: "'DM Sans', sans-serif",
-                opacity: 0.8,
-                lineHeight: "1.5em",
-              }}
-            >
-              {item.description}
-            </p>
-          </div>
+            {item.description}
+          </p>
 
           {/* Price — pushed to bottom */}
           <div className="mt-auto pt-2" style={{ borderTop: "1px solid rgba(212,175,55,0.2)" }}>

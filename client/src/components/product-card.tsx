@@ -68,30 +68,17 @@ export default function ProductCard({ item, onClick }: ProductCardProps) {
           </h3>
         </div>
 
-        {/* Description — always exactly 1 line tall */}
-        <div
-          className="mt-1 mb-2"
+        {/* Description — single line, truncated with ellipsis */}
+        <p
+          className="text-xs sm:text-sm mt-1 mb-2 truncate"
           style={{
-            height: "1.5em",
-            lineHeight: "1.5em",
-            overflow: "hidden",
-            display: "-webkit-box",
-            WebkitLineClamp: 1,
-            WebkitBoxOrient: "vertical",
+            color: "#DCD4C8",
+            fontFamily: "'DM Sans', sans-serif",
+            opacity: 0.8,
           }}
         >
-          <p
-            className="text-xs sm:text-sm"
-            style={{
-              color: "#DCD4C8",
-              fontFamily: "'DM Sans', sans-serif",
-              opacity: 0.8,
-              lineHeight: "1.5em",
-            }}
-          >
-            {item.description || "No description available"}
-          </p>
-        </div>
+          {item.description || "No description available"}
+        </p>
 
         {/* Price */}
         <div className="pt-2" style={{ borderTop: "1px solid rgba(212,175,55,0.2)" }}>

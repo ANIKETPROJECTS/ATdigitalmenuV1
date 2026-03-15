@@ -34,6 +34,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 import waiterImg from "@assets/waiter_1773555177013.png";
 import chefsHatImg from "@assets/chefs-hat_1773556627617.png";
@@ -608,13 +609,13 @@ export default function MenuLanding() {
 
                 {/* Headline */}
                 <h2
-                  className="text-center font-bold mb-1 leading-tight"
-                  style={{ color: "#D4AF37", fontFamily: "'Cormorant Garamond', serif", fontSize: "22px", letterSpacing: "0.02em" }}
+                  className="text-center font-black mb-1 leading-tight uppercase tracking-widest"
+                  style={{ color: "#D4AF37", fontFamily: "'Cormorant Garamond', serif", fontSize: "20px", letterSpacing: "0.18em" }}
                 >
-                  Tell Us Who You Are
+                  Please Enter Your Details
                 </h2>
-                <p className="text-center text-xs mb-5 font-light" style={{ color: "#8A7A5A", letterSpacing: "0.05em" }}>
-                  Enter your details to personalise your experience
+                <p className="text-center text-[11px] mb-5 font-light uppercase tracking-widest" style={{ color: "#6A5A3A", letterSpacing: "0.12em" }}>
+                  To Proceed To Our Menu
                 </p>
 
                 <form onSubmit={handleSubmit} className="w-full space-y-4">
@@ -648,8 +649,8 @@ export default function MenuLanding() {
                         maxLength={10}
                         value={customerPhone}
                         onChange={(val) => setCustomerPhone(val)}
+                        pattern={REGEXP_ONLY_DIGITS}
                         inputMode="numeric"
-                        pattern="[0-9]*"
                         data-testid="input-customer-phone"
                       >
                         <InputOTPGroup className="gap-[5px]">

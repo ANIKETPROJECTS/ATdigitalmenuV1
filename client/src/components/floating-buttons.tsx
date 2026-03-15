@@ -205,7 +205,7 @@ export default function FloatingButtons() {
                         }}
                         data-testid={`smart-item-${item._id?.toString()}`}
                       >
-                        <div className="relative aspect-[4/3] overflow-hidden">
+                        <div className="relative overflow-hidden" style={{ height: "190px" }}>
                           <img
                             src={item.image || fallbackImg}
                             alt={item.name}
@@ -214,7 +214,6 @@ export default function FloatingButtons() {
                               (e.target as HTMLImageElement).src = fallbackImg;
                             }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                           <div
                             className={`absolute top-2 right-2 w-3.5 h-3.5 rounded-full border ${
                               item.isVeg ? "bg-green-500 border-green-300" : "bg-red-500 border-red-300"
@@ -223,10 +222,16 @@ export default function FloatingButtons() {
                         </div>
                         <div className="p-2">
                           <p
-                            className="text-[11px] font-semibold tracking-wide uppercase leading-tight line-clamp-2 mb-1"
+                            className="text-[11px] font-semibold tracking-wide uppercase leading-tight line-clamp-2 mb-0.5"
                             style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
                           >
                             {item.name}
+                          </p>
+                          <p
+                            className="text-[10px] truncate mb-1"
+                            style={{ color: "#DCD4C8", fontFamily: "'DM Sans', sans-serif", opacity: 0.75 }}
+                          >
+                            {item.description || ""}
                           </p>
                           <p
                             className="text-xs font-bold"

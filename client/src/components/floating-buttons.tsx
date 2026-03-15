@@ -18,10 +18,10 @@ export default function FloatingButtons() {
   const { data: allItems = [] } = useQuery<MenuItem[]>({ queryKey: ["/api/menu-items"] });
 
   const smartSections = useMemo(() => {
-    const shuffled = [...allItems].sort(() => 0.5 - Math.random());
+    const available = allItems.filter(i => i.isAvailable);
     return {
-      today: shuffled.slice(0, 10),
-      chef: shuffled.slice(10, 20),
+      today: available.filter(i => i.category?.toLowerCase() === "nibbles"),
+      chef: available.filter(i => i.category?.toLowerCase() === "salads"),
     };
   }, [allItems]);
 

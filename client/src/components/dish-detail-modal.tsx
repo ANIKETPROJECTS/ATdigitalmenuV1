@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Leaf, Flame, Clock, ChefHat, AlertTriangle, Sparkles, SlidersHorizontal } from "lucide-react";
+import { X, Clock } from "lucide-react";
 import type { MenuItem } from "@shared/schema";
 import fallbackImg from "@assets/coming_soon_imagev2_1766811809828.jpg";
 import { useState } from "react";
@@ -20,10 +20,6 @@ const NUTRITION_PLACEHOLDER = [
 
 const ALLERGEN_PLACEHOLDER = "Information not available for this item.";
 const INGREDIENTS_PLACEHOLDER = "Detailed ingredient list not available.";
-const CUSTOMIZATION_PLACEHOLDER = [
-  "Spice level: Mild / Medium / Hot",
-  "Portion: Regular / Large",
-];
 const PREP_TIME_PLACEHOLDER = "15–25 mins";
 
 export default function DishDetailModal({ item, onClose }: DishDetailModalProps) {
@@ -43,14 +39,14 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
     <AnimatePresence>
       {item && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+          className="fixed inset-0 z-50 flex items-end justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
           {/* Backdrop */}
           <motion.div
-            className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -59,36 +55,30 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
 
           {/* Modal Sheet */}
           <motion.div
-            className="relative w-full sm:max-w-md overflow-y-auto rounded-t-3xl sm:rounded-2xl"
+            className="relative w-full sm:max-w-md overflow-y-auto rounded-t-3xl"
             style={{
               backgroundColor: "#1A1408",
-              border: "1px solid rgba(212,175,55,0.35)",
-              maxHeight: "92vh",
+              border: "1px solid rgba(212,175,55,0.3)",
+              borderBottom: "none",
+              maxHeight: "95vh",
             }}
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: "100%", opacity: 0 }}
-            transition={{ type: "spring", damping: 28, stiffness: 300 }}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 320 }}
           >
             {/* Drag handle */}
-            <div className="flex justify-center pt-3 pb-1 sm:hidden">
+            <div className="flex justify-center pt-3 pb-1">
               <div className="w-12 h-1 rounded-full" style={{ backgroundColor: "rgba(212,175,55,0.35)" }} />
             </div>
 
-            {/* Hero Image */}
+            {/* Hero Image — full width, no tint */}
             <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/3" }}>
               <img
                 src={imageUrl}
                 alt={item.name}
                 className="w-full h-full object-cover"
                 onError={() => setImgError(true)}
-              />
-              {/* Layered gradient — heavier at bottom for name legibility */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 40%, rgba(26,20,8,0.85) 80%, rgba(26,20,8,1) 100%)",
-                }}
               />
 
               {/* Close button */}
@@ -97,7 +87,7 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
                 className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center transition-colors"
                 style={{
                   backgroundColor: "rgba(0,0,0,0.55)",
-                  border: "1px solid rgba(255,255,255,0.15)",
+                  border: "1px solid rgba(255,255,255,0.2)",
                   color: "#fff",
                 }}
                 data-testid="button-close-dish-modal"
@@ -105,9 +95,9 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
                 <X className="w-4 h-4" />
               </button>
 
-              {/* Veg / Non-Veg badge */}
+              {/* Veg / Non-Veg badge — no icon, short label */}
               <div
-                className={`absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase`}
+                className="absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase"
                 style={{
                   backgroundColor: item.isVeg ? "rgba(22,163,74,0.9)" : "rgba(220,38,38,0.9)",
                   color: "#fff",
@@ -116,49 +106,7 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
                   fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                {item.isVeg ? <Leaf className="w-3 h-3" /> : <Flame className="w-3 h-3" />}
-                {item.isVeg ? "Vegetarian" : "Non-Veg"}
-              </div>
-
-              {/* Name + Price overlaid at bottom of image */}
-              <div className="absolute bottom-0 left-0 right-0 px-5 pb-4">
-                <h2
-                  className="font-bold leading-tight uppercase mb-2"
-                  style={{
-                    color: "#FFFFFF",
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "clamp(16px, 5vw, 22px)",
-                    letterSpacing: "0.08em",
-                    wordBreak: "break-word",
-                    textShadow: "0 2px 12px rgba(0,0,0,0.9)",
-                  }}
-                  data-testid="text-dish-name"
-                >
-                  {item.name}
-                </h2>
-                {/* Gold gradient price tag */}
-                <div className="inline-flex items-center gap-2">
-                  <div
-                    className="h-px w-6"
-                    style={{ background: "linear-gradient(90deg, #D4AF37, #E6C55A)" }}
-                  />
-                  <p
-                    className="text-base font-bold tracking-wider"
-                    style={{
-                      background: "linear-gradient(90deg, #D4AF37, #E6C55A)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      fontFamily: "'DM Sans', sans-serif",
-                    }}
-                    data-testid="text-dish-price"
-                  >
-                    {priceDisplay}
-                  </p>
-                  <div
-                    className="h-px w-6"
-                    style={{ background: "linear-gradient(90deg, #E6C55A, transparent)" }}
-                  />
-                </div>
+                {item.isVeg ? "Veg" : "Non-Veg"}
               </div>
             </div>
 
@@ -168,8 +116,37 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
               style={{ background: "linear-gradient(90deg, transparent, #D4AF37, #E6C55A, transparent)" }}
             />
 
+            {/* Name + Price row */}
+            <div className="px-5 pt-4 pb-2 flex items-start justify-between gap-3">
+              <h2
+                className="font-bold leading-tight uppercase flex-1"
+                style={{
+                  color: "#FFFFFF",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "clamp(16px, 5vw, 22px)",
+                  letterSpacing: "0.08em",
+                  wordBreak: "break-word",
+                }}
+                data-testid="text-dish-name"
+              >
+                {item.name}
+              </h2>
+              <p
+                className="text-base font-bold tracking-wider flex-shrink-0"
+                style={{
+                  background: "linear-gradient(90deg, #D4AF37, #E6C55A)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  fontFamily: "'DM Sans', sans-serif",
+                }}
+                data-testid="text-dish-price"
+              >
+                {priceDisplay}
+              </p>
+            </div>
+
             {/* Content */}
-            <div className="px-5 py-5 space-y-5">
+            <div className="px-5 pb-6 space-y-4">
 
               {/* Description */}
               {item.description && (
@@ -191,19 +168,11 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
               )}
 
               {/* Prep time */}
-              <div className="flex items-center gap-4">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "linear-gradient(135deg, rgba(212,175,55,0.2), rgba(212,175,55,0.05))",
-                    border: "1px solid rgba(212,175,55,0.3)",
-                  }}
-                >
-                  <Clock className="w-4 h-4" style={{ color: "#D4AF37" }} />
-                </div>
+              <div className="flex items-center gap-3">
+                <Clock className="w-4 h-4 flex-shrink-0" style={{ color: "#D4AF37" }} />
                 <div>
                   <p
-                    className="text-[10px] uppercase tracking-widest mb-0.5 font-semibold"
+                    className="text-[10px] uppercase tracking-widest font-semibold"
                     style={{ color: "rgba(212,175,55,0.6)", fontFamily: "'DM Sans', sans-serif" }}
                   >
                     Preparation Time
@@ -220,17 +189,14 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
               {/* Divider */}
               <div className="h-px" style={{ background: "rgba(212,175,55,0.12)" }} />
 
-              {/* Nutritional Contents */}
+              {/* Nutritional Contents — no icon */}
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="w-4 h-4" style={{ color: "#D4AF37" }} />
-                  <h3
-                    className="text-xs font-bold uppercase tracking-widest"
-                    style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
-                  >
-                    Nutritional Contents
-                  </h3>
-                </div>
+                <h3
+                  className="text-xs font-bold uppercase tracking-widest mb-3"
+                  style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  Nutritional Contents
+                </h3>
                 <div className="grid grid-cols-3 gap-2">
                   {NUTRITION_PLACEHOLDER.map((n) => (
                     <div
@@ -267,17 +233,14 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
               {/* Divider */}
               <div className="h-px" style={{ background: "rgba(212,175,55,0.12)" }} />
 
-              {/* Allergens */}
+              {/* Allergens — no icon */}
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="w-4 h-4" style={{ color: "#D4AF37" }} />
-                  <h3
-                    className="text-xs font-bold uppercase tracking-widest"
-                    style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
-                  >
-                    Allergens
-                  </h3>
-                </div>
+                <h3
+                  className="text-xs font-bold uppercase tracking-widest mb-3"
+                  style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  Allergens
+                </h3>
                 <div
                   className="rounded-xl px-4 py-3"
                   style={{
@@ -297,17 +260,14 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
               {/* Divider */}
               <div className="h-px" style={{ background: "rgba(212,175,55,0.12)" }} />
 
-              {/* Ingredients */}
+              {/* Ingredients — no icon */}
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <ChefHat className="w-4 h-4" style={{ color: "#D4AF37" }} />
-                  <h3
-                    className="text-xs font-bold uppercase tracking-widest"
-                    style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
-                  >
-                    Ingredients
-                  </h3>
-                </div>
+                <h3
+                  className="text-xs font-bold uppercase tracking-widest mb-3"
+                  style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  Ingredients
+                </h3>
                 <div
                   className="rounded-xl px-4 py-3"
                   style={{
@@ -321,45 +281,6 @@ export default function DishDetailModal({ item, onClose }: DishDetailModalProps)
                   >
                     {INGREDIENTS_PLACEHOLDER}
                   </p>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="h-px" style={{ background: "rgba(212,175,55,0.12)" }} />
-
-              {/* Customization */}
-              <div className="pb-2">
-                <div className="flex items-center gap-2 mb-3">
-                  <SlidersHorizontal className="w-4 h-4" style={{ color: "#D4AF37" }} />
-                  <h3
-                    className="text-xs font-bold uppercase tracking-widest"
-                    style={{ color: "#D4AF37", fontFamily: "'DM Sans', sans-serif" }}
-                  >
-                    Customization
-                  </h3>
-                </div>
-                <div className="space-y-2">
-                  {CUSTOMIZATION_PLACEHOLDER.map((c, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 rounded-xl px-4 py-3"
-                      style={{
-                        background: "rgba(212,175,55,0.06)",
-                        border: "1px solid rgba(212,175,55,0.14)",
-                      }}
-                    >
-                      <div
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ background: "linear-gradient(90deg, #D4AF37, #E6C55A)" }}
-                      />
-                      <p
-                        className="text-sm"
-                        style={{ color: "#DCD4C8", fontFamily: "'DM Sans', sans-serif" }}
-                      >
-                        {c}
-                      </p>
-                    </div>
-                  ))}
                 </div>
               </div>
 
